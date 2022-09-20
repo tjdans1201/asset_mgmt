@@ -15,7 +15,7 @@ class Account(models.Model):
     id = models.AutoField(primary_key=True)
     account_holder = models.CharField(max_length=20)
     stock_firm_id = models.ForeignKey(StockFirm, on_delete=models.SET_NULL, null=True)
-    account_number = models.IntegerField()
+    account_number = models.IntegerField(unique=True)
     account_name = models.CharField(max_length=20)
     investment_principal = models.IntegerField()
 
@@ -23,7 +23,7 @@ class Account(models.Model):
 class Stock(models.Model):
     id = models.AutoField(primary_key=True)
     stock_name = models.CharField(max_length=20)
-    isin = models.CharField(max_length=20)
+    isin = models.CharField(max_length=20, unique=True)
     asset_group_id = models.ForeignKey(AssetGroup, on_delete=models.SET_NULL, null=True)
 
 
