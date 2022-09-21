@@ -15,7 +15,7 @@ class Account(models.Model):
     id = models.AutoField(primary_key=True)
     account_holder = models.CharField(max_length=20)
     stock_firm_id = models.ForeignKey(StockFirm, on_delete=models.SET_NULL, null=True)
-    account_number = models.IntegerField(unique=True)
+    account_number = models.CharField(max_length=20, unique=True)
     account_name = models.CharField(max_length=20)
     investment_principal = models.IntegerField()
 
