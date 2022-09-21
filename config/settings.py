@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'apps.assets.apps.AssetsConfig'
+    'apps.assets.apps.AssetsConfig',
+    'apps.transactions.apps.TransactionsConfig'
     ]
 
 MIDDLEWARE = [
@@ -122,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Aisa/Seoul'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
