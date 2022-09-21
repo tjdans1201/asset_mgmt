@@ -16,7 +16,20 @@
 
 <img width="196" alt="erd" src="https://user-images.githubusercontent.com/57758265/191485592-872254fe-6e76-4c36-8f03-4db6317ad5f5.png">
 
+asset_group, stock, stock_firm 테이블은 기본적으로 마스터 데이터가 존재한다고 가정
+
 ## Batch
+데이터 셋은 apps/data에 csv로 파일로 제공된다고 가정하고 개발
+pandas로 csv를 읽어서 각 테이블에 데이터를 추가하거나 수정
+- account_asset_info_set.csv
+- account_basic_info_set.csv
+- asset_group_info_set.csv
+매일 오전 10시 경 batch가 실행된다고 가정
+- 10시 정각 : asset_group_info_set.csv의 데이터 중 stock table에 없는 종목은 추가
+- 10시 10초 : account_basic_info_set.csv를 읽고 각 계좌의 투자원금을 업데이트
+- 10시 20초 : account_asset_info_set.csv를 읽고 계좌 별 보유종목의 현재가와 보유수량을 업데이트
+
+### 종목
 
 ## API
 
@@ -373,3 +386,7 @@ Response Example
     "message": "서버 에러가 발생하였습니다."
 }
 ```
+
+## unittest
+<img width="452" alt="화면 캡처 2022-09-21 200021" src="https://user-images.githubusercontent.com/57758265/191487832-d4119419-fca8-4cdc-881c-ce606b280a66.png">
+
