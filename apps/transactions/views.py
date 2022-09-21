@@ -46,6 +46,14 @@ class TransactionsAPI(APIView):
         입금 거래 정보들을 서버에 등록
         요청 데이터 계좌번호, 고객명, 거래 금액 순서로 연결한 string 을 hash해서 db에 등록
         랜덤으로 4자리의 거래정보 식별자를 생성하여 db에 등록
+        args:
+            request.data : {
+                            "account_number": "str",
+                            "user_name": "str",
+                            "transfer_amount": int
+                            }
+
+        Returns: {"transfer_identifier": int}
         """
         try:
             request_body = request.data
@@ -85,7 +93,13 @@ class TransactionsAPI(APIView):
         """
         등록된 거래정보를 검증하고 실제 고객의 자산을 업데이트
         등록한 거래정보를 해싱한 값과 db에 등록된 값과 거래정보 식별자가 같으면 검증 성공
-        검증에 성공하면 투자원금과 현금자산을 업데이트하고 해당 거래정보는 삭제
+        검증에 성공하면 투자원금과 현금자산을 업데이트하고 해당 거래정보도 업데이트
+        args:
+            request.data : {
+                            "signature": str, // 거래 데이터를 sha512 hash 한 값.
+                            "transfer_identifier": int
+                            }
+        Returns: {"status": True}
 
         """
         try:
@@ -98,8 +112,7 @@ class TransactionsAPI(APIView):
             transaction = Transaction.objects.filter(
                 transaction_signature=request_body["signature"].lower(),
                 transfer_identifier=request_body["transfer_identifier"],
-                is_finish = False
-
+                is_finish=False,
             )
             if transaction:
                 # 해당 거래정보가 있으면 해당 계좌정보를 취득

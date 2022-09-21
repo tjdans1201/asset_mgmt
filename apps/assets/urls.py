@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AssetAPI,AssetDetailAPI,AssetStockAPI
+from .views import AssetAPI, AssetDetailAPI, AssetStockAPI
 
 urlpatterns = [
     path("/<int:id>", AssetAPI.as_view()),
