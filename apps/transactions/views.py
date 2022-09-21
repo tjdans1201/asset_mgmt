@@ -98,6 +98,8 @@ class TransactionsAPI(APIView):
             transaction = Transaction.objects.filter(
                 transaction_signature=request_body["signature"].lower(),
                 transfer_identifier=request_body["transfer_identifier"],
+                is_finish = False
+
             )
             if transaction:
                 # 해당 거래정보가 있으면 해당 계좌정보를 취득
@@ -114,7 +116,8 @@ class TransactionsAPI(APIView):
                     stocksheld.save()
                     account[0].investment_principal += transaction[0].transfer_amount
                     account[0].save()
-                    transaction[0].delete()
+                    transaction[0].is_finish = True
+                    transaction[0].save()
                     result = {"status": True}
                     return Response(result, status=status.HTTP_200_OK)
                 else:

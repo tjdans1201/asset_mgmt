@@ -8,4 +8,4 @@ class Transaction(models.Model):
     account_number = models.CharField(max_length=20)
     user_name = models.CharField(max_length=20)
     transfer_amount = models.IntegerField()
- 
+    is_finish = models.BooleanField(default=False)
