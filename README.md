@@ -12,7 +12,7 @@
 
 ## ERD
 
-<img width="196" alt="erd" src="https://user-images.githubusercontent.com/57758265/191485315-6d48dd4e-491b-4389-9400-f52424f7310d.png">
+<img width="196" alt="erd" src="https://user-images.githubusercontent.com/57758265/191506367-abacdc04-4efa-4fc9-9fc2-115dfc8f5fc8.png">
 
 <img width="196" alt="erd" src="https://user-images.githubusercontent.com/57758265/191485592-872254fe-6e76-4c36-8f03-4db6317ad5f5.png">
 
